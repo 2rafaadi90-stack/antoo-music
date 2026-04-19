@@ -1,16 +1,25 @@
 body {
   margin: 0;
   font-family: Arial;
-  background: #121212;
   color: white;
+  background: linear-gradient(135deg, #ff7a00, #ff3c00);
+  animation: bgMove 6s infinite alternate;
+}
+
+/* animasi background */
+@keyframes bgMove {
+  0% { background-position: left; }
+  100% { background-position: right; }
 }
 
 header {
   padding: 20px;
+  backdrop-filter: blur(10px);
 }
 
 header h1 {
   margin: 0;
+  font-weight: bold;
 }
 
 input {
@@ -21,6 +30,7 @@ input {
   border: none;
 }
 
+/* LIST */
 section {
   padding: 15px;
 }
@@ -32,14 +42,17 @@ section {
 }
 
 .card {
-  background: #181818;
-  border-radius: 12px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 15px;
   padding: 10px;
-  transition: 0.2s;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+  transform: scale(1);
 }
 
 .card:hover {
-  background: #282828;
+  transform: scale(1.05);
+  background: rgba(0,0,0,0.8);
 }
 
 .card img {
@@ -49,15 +62,18 @@ section {
 
 .card h3 {
   font-size: 14px;
-  margin: 10px 0;
 }
 
-audio {
+/* PLAYER */
+.player {
+  position: fixed;
+  bottom: 0;
   width: 100%;
+  background: black;
+  padding: 10px;
+  border-top: 3px solid orange;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  color: gray;
+#audioPlayer {
+  width: 100%;
 }
