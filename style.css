@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  background: #0d1b2a;
+  color: white;
+  font-family: sans-serif;
+}
+
+/* HEADER */
+.topbar {
+  padding: 15px;
+  background: linear-gradient(90deg, #0d1b2a, orange);
+}
+
+/* TRACK LIST */
+.track {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid #222;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.track:hover {
+  background: #132a3b;
+}
+
+/* COVER AUTO */
+.cover {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  margin-right: 15px;
+  background-size: cover;
+  background-position: center;
+}
+
+/* PLAYER */
+.player {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #111;
+  padding: 10px;
+}
+
+/* VISUALIZER */
+#visualizer {
+  position: fixed;
+  bottom: 60px;
+  width: 100%;
+  height: 100px;
+}
