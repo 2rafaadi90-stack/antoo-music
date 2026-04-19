@@ -1,60 +1,37 @@
 body {
   margin: 0;
-  font-family: Arial;
-  background: #0b1d2a;
+  background: #0d1b2a;
   color: white;
+  font-family: sans-serif;
 }
 
-/* TOP */
+/* HEADER */
 .topbar {
-  display: flex;
-  justify-content: space-between;
   padding: 15px;
-  background: linear-gradient(90deg, #0b1d2a, #ff6600);
+  background: linear-gradient(90deg, #0d1b2a, orange);
 }
 
-.topbar input {
-  padding: 8px;
-  border-radius: 20px;
-  border: none;
-}
-
-/* LIST */
-.list {
-  padding: 20px;
-}
-
-/* TRACK */
+/* TRACK LIST */
 .track {
   display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.play {
-  width: 40px;
-  height: 40px;
-  background: orange;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 15px;
+  border-bottom: 1px solid #222;
   cursor: pointer;
-  margin-right: 10px;
-}
-
-/* WAVE */
-.wave {
-  display: flex;
-  height: 40px;
-  flex: 1;
-}
-
-.bar {
-  width: 3px;
-  margin: 1px;
-  background: #1e90ff;
   transition: 0.2s;
+}
+
+.track:hover {
+  background: #132a3b;
+}
+
+/* COVER AUTO */
+.cover {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  margin-right: 15px;
+  background-size: cover;
+  background-position: center;
 }
 
 /* PLAYER */
@@ -64,11 +41,12 @@ body {
   width: 100%;
   background: #111;
   padding: 10px;
-  display: flex;
-  align-items: center;
 }
 
-.player button {
-  font-size: 20px;
-  margin-right: 10px;
+/* VISUALIZER */
+#visualizer {
+  position: fixed;
+  bottom: 60px;
+  width: 100%;
+  height: 100px;
 }
