@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antooo Music</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Antooo Music</h1>
+</header>
+
+<div id="musicList" class="music-list"></div>
+
+<!-- PLAYER -->
+<div class="player">
+  <div id="nowPlaying">Pilih lagu...</div>
+
+  <canvas id="visualizer"></canvas>
+
+  <div class="controls">
+    <button onclick="togglePlay()" id="playBtn">▶</button>
+  </div>
+
+  <audio id="audioPlayer" controls></audio>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
