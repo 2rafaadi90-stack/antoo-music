@@ -1,124 +1,90 @@
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f0f0f;
-  color: white;
+  margin:0;
+  font-family:Arial;
+  background: radial-gradient(circle at top,#1a1a1a,#0b0b0b);
+  color:white;
 }
 
-/* HEADER */
-header {
-  padding: 20px;
-  background: #111;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-header h1 {
-  margin: 0;
-  color: orange;
-}
+header {padding:20px;background:#111;}
+.tagline {font-size:12px;color:#1db954;}
 
 input {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 20px;
-  border: none;
-  background: #1a1a1a;
-  color: white;
+  width:100%;
+  padding:10px;
+  border-radius:20px;
+  border:none;
+  margin-top:10px;
+  background:#222;
+  color:white;
 }
 
-/* SECTION */
-section {
-  padding: 15px;
-}
-
-h2 {
-  margin-bottom: 10px;
-}
-
-/* GRID */
 .music-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  padding:10px;
 }
 
-/* CARD */
 .card {
-  background: #181818;
-  border-radius: 15px;
-  padding: 10px;
-  transition: 0.3s;
-  position: relative;
-  overflow: hidden;
+  background:#181818;
+  padding:10px;
+  border-radius:10px;
+  position:relative;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 15px rgba(255,165,0,0.4);
+.card:hover {background:#222;}
+
+.play-btn {
+  position:absolute;
+  right:10px;
+  bottom:10px;
+  background:#1db954;
+  padding:8px;
+  border-radius:50%;
+  cursor:pointer;
 }
 
-/* cover */
-.card img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-/* judul */
-.card h3 {
-  font-size: 14px;
-  margin: 10px 0;
-}
-
-/* tombol play overlay */
-.card::after {
-  content: "▶";
-  position: absolute;
-  right: 15px;
-  bottom: 15px;
-  background: orange;
-  color: black;
-  border-radius: 50%;
-  padding: 10px;
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.card:hover::after {
-  opacity: 1;
+.like {
+  position:absolute;
+  left:10px;
+  bottom:10px;
+  cursor:pointer;
 }
 
 /* PLAYER */
 .player {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #111;
-  padding: 10px;
-  border-top: 2px solid orange;
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:#000;
+  padding:10px;
 }
 
-#audioPlayer {
-  width: 100%;
+.controls button {
+  margin:5px;
+  padding:5px 10px;
+  background:#222;
+  color:white;
+  border:none;
+  border-radius:5px;
 }
 
-#nowPlaying {
-  font-size: 14px;
-  margin-bottom: 5px;
+/* PROGRESS */
+.progress-container {
+  width:100%;
+  height:5px;
+  background:#333;
+  cursor:pointer;
 }
 
-/* ANIMASI HALUS */
-.card {
-  animation: fadeIn 0.5s ease;
+.progress {
+  height:5px;
+  background:#1db954;
+  width:0%;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.time {
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
 }
