@@ -8,57 +8,23 @@
 </head>
 <body>
 
-<div class="app">
+<header class="topbar">
+  <h2>Antooo Music</h2>
+  <input type="text" id="search" placeholder="Cari lagu...">
+</header>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <h2>🎧 Antooo</h2>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Search</a>
-      <a href="#">Library</a>
-    </nav>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main">
-    <header class="topbar">
-      <input type="text" id="search" placeholder="Cari lagu...">
-    </header>
-
-    <div id="musicList" class="music-grid"></div>
-  </main>
-
-</div>
+<main id="musicList" class="list"></main>
 
 <!-- PLAYER -->
 <div class="player">
-  <div class="left">
-    <div class="cover" id="cover"></div>
-    <div>
-      <div id="nowPlaying">Pilih lagu...</div>
-
-      <!-- equalizer -->
-      <div class="equalizer" id="eq">
-        <span></span><span></span><span></span><span></span>
-      </div>
-    </div>
+  <button onclick="togglePlay()" id="playBtn">▶</button>
+  <div class="info">
+    <span id="nowPlaying">Pilih lagu...</span>
+    <div class="wave" id="wave"></div>
   </div>
-
-  <div class="center">
-    <div class="controls">
-      <button onclick="prev()">⏮</button>
-      <button onclick="togglePlay()" id="playBtn">▶</button>
-      <button onclick="next()">⏭</button>
-    </div>
-
-    <div class="progress-container" onclick="seek(event)">
-      <div class="progress" id="progress"></div>
-    </div>
-  </div>
-
-  <audio id="audioPlayer"></audio>
 </div>
+
+<audio id="audioPlayer"></audio>
 
 <script src="script.js"></script>
 </body>
