@@ -1,17 +1,17 @@
 const music = [
   {
-    title: "Lagu 1",
-    file: "musik1.mp3"
+    title: "Kalau Bukan Kamu",
+    file: "Kalau Bukan Kamu 22.mp3"
   },
   {
-    title: "Lagu 2",
-    file: "musik2.mp3"
+    title: "Rumah Yang Salah",
+    file: "Rumah Yang Salah.mp3"
   }
 ];
 
 const list = document.getElementById("musicList");
 
-music.forEach((m, i) => {
+music.forEach((m) => {
   list.innerHTML += `
     <div class="card">
       <h3>${m.title}</h3>
