@@ -1,13 +1,13 @@
 [
-  { "title": "Aku", "file": "Sevran Ai - Aku.mp3" },
-  { "title": "Masih Kamu", "file": "Sevran Ai - Masih Kamu.mp3" },
-  { "title": "Bacot", "file": "Sevran ai - Bacot.mp3" },
-  { "title": "Coba", "file": "Sevran ai - Coba.mp3" },
-  { "title": "Kalau Bukan Kamu", "file": "Sevran ai - Kalau Bukan Kamu.mp3" },
-  { "title": "Ketika", "file": "Sevran ai - Ketika.mp3" },
-  { "title": "Rumah Yang Salah", "file": "Sevran ai - Rumah Yang Salah.mp3" },
-  { "title": "Saat", "file": "Sevran ai - Saat.mp3" },
-  { "title": "Sakit", "file": "Sevran ai - Sakit.mp3" },
-  { "title": "Tester", "file": "Sevran ai - Tester.mp3" },
-  { "title": "Yang Paling Ku Percaya", "file": "Sevran ai - Yang Paling Ku Percaya.mp3" }
+  { "title": "Aku", "file": "music/aku.mp3" },
+  { "title": "Masih Kamu", "file": "music/masih-kamu.mp3" },
+  { "title": "Bacot", "file": "music/bacot.mp3" },
+  { "title": "Coba", "file": "music/coba.mp3" },
+  { "title": "Kalau Bukan Kamu", "file": "music/kalau-bukan-kamu.mp3" },
+  { "title": "Ketika", "file": "music/ketika.mp3" },
+  { "title": "Rumah Yang Salah", "file": "music/rumah-yang-salah.mp3" },
+  { "title": "Saat", "file": "music/saat.mp3" },
+  { "title": "Sakit", "file": "music/sakit.mp3" },
+  { "title": "Tester", "file": "music/tester.mp3" },
+  { "title": "Yang Paling Ku Percaya", "file": "music/yang-paling-ku-percaya.mp3" }
 ]
