@@ -1,56 +1,62 @@
-let songs = [];
+const songs = [
+  { title: "Aku", file: "Sevran Ai - Aku.mp3" },
+  { title: "Masih Kamu", file: "Sevran Ai - Masih Kamu.mp3" },
+  { title: "Bacot", file: "Sevran ai - Bacot.mp3" },
+  { title: "Coba", file: "Sevran ai - Coba.mp3" },
+  { title: "Kalau Bukan Kamu", file: "Sevran ai - Kalau Bukan Kamu.mp3" },
+  { title: "Ketika", file: "Sevran ai - Ketika.mp3" },
+  { title: "Rumah Yang Salah", file: "Sevran ai - Rumah Yang Salah.mp3" },
+  { title: "Saat", file: "Sevran ai - Saat.mp3" },
+  { title: "Sakit", file: "Sevran ai - Sakit.mp3" },
+  { title: "Tester", file: "Sevran ai - Tester.mp3" },
+  { title: "Yang Paling Ku Percaya", file: "Sevran ai - Yang Paling Ku Percaya.mp3" }
+];
+
 let currentIndex = 0;
 
 const audio = document.getElementById("audioPlayer");
-const musicList = document.getElementById("musicList");
+const list = document.getElementById("musicList");
 const nowPlaying = document.getElementById("nowPlaying");
-const progress = document.getElementById("progress");
 const playBtn = document.getElementById("playBtn");
-const search = document.getElementById("search");
-const eq = document.getElementById("eq");
-
-// FETCH JSON
-fetch("music.json")
-  .then(res => res.json())
-  .then(data => {
-    songs = data;
-    renderList(songs);
-  })
-  .catch(err => console.log("JSON ERROR:", err));
 
 // RENDER LIST
-function renderList(list) {
-  musicList.innerHTML = "";
+function render() {
+  list.innerHTML = "";
 
-  list.forEach(song => {
+  songs.forEach((song, i) => {
     const div = document.createElement("div");
-    div.className = "card";
-    div.innerHTML = `<strong>${song.title}</strong>`;
+    div.className = "track";
 
-    div.onclick = () => {
-      const realIndex = songs.indexOf(song);
-      playMusic(realIndex);
-    };
+    // fake waveform
+    const bars = Array(60).fill(0).map(() =>
+      `<div class="bar" style="height:${Math.random()*40}px"></div>`
+    ).join("");
 
-    musicList.appendChild(div);
+    div.innerHTML = `
+      <div class="play">▶</div>
+      <div>
+        <b>${song.title}</b>
+        <div class="wave">${bars}</div>
+      </div>
+    `;
+
+    div.onclick = () => playMusic(i);
+    list.appendChild(div);
   });
 }
 
-// PLAY MUSIC
-function playMusic(index) {
-  if (!songs[index]) return;
+// PLAY
+function playMusic(i) {
+  currentIndex = i;
+  const song = songs[i];
 
-  currentIndex = index;
-  const song = songs[index];
-
-  audio.src = song.file;
+  audio.src = encodeURI(song.file);
 
   audio.play()
     .then(() => {
       playBtn.innerText = "⏸";
-      eq.style.opacity = 1;
     })
-    .catch(err => console.log("AUDIO ERROR:", err));
+    .catch(err => console.log("Audio error:", err));
 
   nowPlaying.innerText = song.title;
 }
@@ -60,56 +66,17 @@ function togglePlay() {
   if (audio.paused) {
     audio.play();
     playBtn.innerText = "⏸";
-    eq.style.opacity = 1;
   } else {
     audio.pause();
     playBtn.innerText = "▶";
-    eq.style.opacity = 0.3;
   }
 }
 
-// NEXT / PREV
-function next() {
+// AUTO NEXT
+audio.addEventListener("ended", () => {
   currentIndex = (currentIndex + 1) % songs.length;
   playMusic(currentIndex);
-}
-
-function prev() {
-  currentIndex = (currentIndex - 1 + songs.length) % songs.length;
-  playMusic(currentIndex);
-}
-
-// AUTO NEXT
-audio.addEventListener("ended", next);
-
-// PROGRESS
-audio.addEventListener("timeupdate", () => {
-  if (!audio.duration) return;
-  const percent = (audio.currentTime / audio.duration) * 100;
-  progress.style.width = percent + "%";
 });
 
-// SEEK
-function seek(e) {
-  const width = e.currentTarget.clientWidth;
-  const clickX = e.offsetX;
-  const duration = audio.duration;
-
-  audio.currentTime = (clickX / width) * duration;
-}
-
-// SEARCH
-search.addEventListener("input", (e) => {
-  const keyword = e.target.value.toLowerCase();
-
-  const filtered = songs.filter(song =>
-    song.title.toLowerCase().includes(keyword)
-  );
-
-  renderList(filtered);
-});
-
-// DEBUG ERROR FILE
-audio.onerror = () => {
-  console.log("FILE ERROR:", audio.src);
-};
+// INIT
+render();
