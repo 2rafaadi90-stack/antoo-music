@@ -1,45 +1,64 @@
 body {
   margin: 0;
   font-family: Arial;
-  background: #0f172a;
+  background: black;
   color: white;
 }
 
+/* HEADER */
 header {
   padding: 20px;
-  font-size: 20px;
-  font-weight: bold;
+  background: linear-gradient(to right, red, white);
+  color: black;
 }
 
-.music-list {
+header h1 {
+  margin: 0;
+}
+
+/* SEARCH */
+#search {
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  margin-top: 10px;
+}
+
+/* KATEGORI */
+.kategori {
   display: flex;
-  flex-direction: column;
   gap: 10px;
+  margin-top: 10px;
+}
+
+.kategori span {
+  background: orange;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* LIST */
+.music-list {
   padding: 10px;
 }
 
-/* TRACK STYLE (KAYA SOUNDCLOUD) */
 .track {
   display: flex;
   align-items: center;
-  gap: 15px;
-  background: #1e293b;
+  gap: 10px;
+  background: #111;
+  margin-bottom: 10px;
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
-  transition: 0.2s;
 }
 
-.track:hover {
-  background: #334155;
-}
-
-.cover {
+.track img {
   width: 60px;
   height: 60px;
-  border-radius: 8px;
-  background-size: cover;
-  background-position: center;
+  border-radius: 10px;
 }
 
 /* PLAYER */
@@ -47,15 +66,35 @@ header {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: #020617;
+  background: #111;
+  display: flex;
+  align-items: center;
   padding: 10px;
+  gap: 10px;
 }
 
-#visualizer {
-  width: 100%;
+.player img {
+  width: 60px;
   height: 60px;
+  border-radius: 10px;
 }
 
-.controls {
-  margin-top: 5px;
+.info {
+  flex: 1;
+}
+
+.controls button {
+  background: orange;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 10px;
+}
+
+#progress {
+  width: 100%;
+}
+
+#volume {
+  width: 80px;
 }
