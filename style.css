@@ -1,8 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial;
   background: black;
   color: white;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* HEADER */
@@ -30,6 +36,7 @@ header h1 {
   display: flex;
   gap: 10px;
   margin-top: 10px;
+  flex-wrap: wrap;
 }
 
 .kategori span {
@@ -42,6 +49,9 @@ header h1 {
 /* LIST */
 .music-list {
   padding: 10px;
+  height: calc(100vh - 230px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .track {
@@ -65,7 +75,8 @@ header h1 {
 .player {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
   background: #111;
   display: flex;
   align-items: center;
