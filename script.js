@@ -1,52 +1,56 @@
+const songs = [
+  { title: "Masih Kamu", file: "music/masih-kamu.mp3" },
+  { title: "Kalau Bukan Kamu", file: "music/kalau-bukan-kamu.mp3" },
+  { title: "Rumah Yang Salah", file: "music/rumah.mp3" },
+  { title: "Yang Paling Ku Percaya", file: "music/percaya.mp3" },
+  { title: "Saat", file: "music/saat.mp3" }
+];
+
 const audio = document.getElementById("audioPlayer");
 const list = document.getElementById("musicList");
 const nowPlaying = document.getElementById("nowPlaying");
 const playBtn = document.getElementById("playBtn");
-
-const songs = [
-  { title: "Masih Kamu", file: "music/Sevran Ai - Masih Kamu.mp3" },
-  { title: "Kalau Bukan Kamu", file: "music/Sevran ai - Kalau Bukan Kamu.mp3" },
-  { title: "Rumah Yang Salah", file: "music/Sevran ai - Rumah Yang Salah.mp3" },
-  { title: "Yang Paling Ku Percaya", file: "music/Sevran ai - Yang Paling Ku Percaya.mp3" },
-  { title: "Saat", file: "music/Sevran ai - Saat.mp3" }
-];
+const coverPlayer = document.getElementById("coverPlayer");
+const progress = document.getElementById("progress");
+const volume = document.getElementById("volume");
 
 let currentIndex = 0;
 
-/* COVER */
+/* COVER RANDOM */
 function getCover(title) {
-  return `https://source.unsplash.com/200x200/?anime,music`;
+  return `https://source.unsplash.com/200x200/?anime,${title}`;
 }
 
 /* RENDER */
-songs.forEach((song, i) => {
-  const div = document.createElement("div");
-  div.className = "track";
+function render() {
+  songs.forEach((song, i) => {
+    const div = document.createElement("div");
+    div.className = "track";
 
-  div.innerHTML = `
-    <div class="cover" style="background-image:url('${getCover()}')"></div>
-    <div>${song.title}</div>
-  `;
+    div.innerHTML = `
+      <img src="${getCover(song.title)}">
+      <div>${song.title}</div>
+    `;
 
-  div.onclick = () => playMusic(i);
-  list.appendChild(div);
-});
+    div.onclick = () => playMusic(i);
+    list.appendChild(div);
+  });
+}
+
+render();
 
 /* PLAY */
 function playMusic(i) {
   currentIndex = i;
-
-  // 🔥 INI FIX PALING PENTING
   audio.src = songs[i].file;
+  audio.play();
 
-  audio.load();
-  audio.play().catch(err => console.log(err));
-
-  nowPlaying.innerText = "Now Playing: " + songs[i].title;
+  nowPlaying.innerText = songs[i].title;
+  coverPlayer.src = getCover(songs[i].title);
   playBtn.innerText = "⏸";
 }
 
-/* TOGGLE */
+/* PLAY/PAUSE */
 function togglePlay() {
   if (audio.paused) {
     audio.play();
@@ -56,3 +60,32 @@ function togglePlay() {
     playBtn.innerText = "▶";
   }
 }
+
+/* NEXT */
+function next() {
+  currentIndex = (currentIndex + 1) % songs.length;
+  playMusic(currentIndex);
+}
+
+/* PREV */
+function prev() {
+  currentIndex = (currentIndex - 1 + songs.length) % songs.length;
+  playMusic(currentIndex);
+}
+
+/* AUTO NEXT */
+audio.onended = next;
+
+/* PROGRESS */
+audio.ontimeupdate = () => {
+  progress.value = (audio.currentTime / audio.duration) * 100;
+};
+
+progress.oninput = () => {
+  audio.currentTime = (progress.value / 100) * audio.duration;
+};
+
+/* VOLUME */
+volume.oninput = () => {
+  audio.volume = volume.value;
+};
