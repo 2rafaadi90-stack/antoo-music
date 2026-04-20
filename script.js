@@ -2,8 +2,9 @@ const songs = [
   { title: "Masih Kamu", file: "music/masih-kamu.mp3" },
   { title: "Kalau Bukan Kamu", file: "music/kalau-bukan-kamu.mp3" },
   { title: "Rumah Yang Salah", file: "music/rumah.mp3" },
-  { title: "Yang Paling Ku Percaya", file: "music/percaya.mp3" },
-  { title: "Saat", file: "music/saat.mp3" }
+  { title: "Yang Paling Ku Percaya", file: "music/Yang Paling Ku Percaya.mp3" },
+  { title: "Saat", file: "music/Saat.mp3" }
+];
 ];
 
 const audio = document.getElementById("audioPlayer");
