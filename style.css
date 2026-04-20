@@ -1,17 +1,17 @@
+/* RESET */
 * {
   box-sizing: border-box;
 }
 
+/* BODY */
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   background: black;
   color: white;
-  height: 100vh;
-  overflow: hidden;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 header {
   padding: 20px;
   background: linear-gradient(to right, red, white);
@@ -19,16 +19,16 @@ header {
 }
 
 header h1 {
-  margin: 0;
+  margin: 0 0 10px 0;
 }
 
 /* SEARCH */
 #search {
   width: 100%;
-  padding: 10px;
+  padding: 10px 15px;
   border-radius: 20px;
   border: none;
-  margin-top: 10px;
+  outline: none;
 }
 
 /* KATEGORI */
@@ -41,23 +41,22 @@ header h1 {
 
 .kategori span {
   background: orange;
-  padding: 5px 10px;
+  padding: 6px 12px;
   border-radius: 20px;
   font-size: 12px;
+  white-space: nowrap;
 }
 
-/* LIST */
+/* ================= LIST LAGU ================= */
 .music-list {
   padding: 10px;
-  height: calc(100vh - 230px);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  padding-bottom: 140px; /* RUANG BUAT PLAYER */
 }
 
 .track {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   background: #111;
   margin-bottom: 10px;
   padding: 10px;
@@ -65,47 +64,84 @@ header h1 {
   cursor: pointer;
 }
 
+.track:active {
+  background: #222;
+}
+
 .track img {
   width: 60px;
   height: 60px;
   border-radius: 10px;
+  object-fit: cover;
 }
 
-/* PLAYER */
+.track div {
+  font-size: 14px;
+}
+
+/* ================= PLAYER ================= */
 .player {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+
   background: #111;
+  padding: 10px;
+
   display: flex;
   align-items: center;
-  padding: 10px;
   gap: 10px;
+
+  border-top: 1px solid #222;
 }
 
 .player img {
   width: 60px;
   height: 60px;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 .info {
   flex: 1;
 }
 
+/* NOW PLAYING */
+#nowPlaying {
+  font-size: 13px;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* CONTROLS */
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
 .controls button {
   background: orange;
   border: none;
-  padding: 5px 10px;
-  margin-right: 5px;
+  padding: 6px 10px;
   border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
+.controls button:active {
+  transform: scale(0.95);
+}
+
+/* PROGRESS */
 #progress {
   width: 100%;
 }
 
+/* VOLUME */
 #volume {
   width: 80px;
 }
