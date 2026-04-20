@@ -1,3 +1,4 @@
+/* ================= DATA LAGU ================= */
 const songs = [
   { title: "Masih Kamu", file: "music/masih-kamu.mp3" },
   { title: "Kalau Bukan Kamu", file: "music/kalau-bukan-kamu.mp3" },
@@ -6,6 +7,7 @@ const songs = [
   { title: "Saat", file: "music/Saat.mp3" }
 ];
 
+/* ================= ELEMENT ================= */
 const audio = document.getElementById("audioPlayer");
 const list = document.getElementById("musicList");
 const nowPlaying = document.getElementById("nowPlaying");
@@ -14,25 +16,26 @@ const coverPlayer = document.getElementById("coverPlayer");
 const progress = document.getElementById("progress");
 const volume = document.getElementById("volume");
 
-let currentIndex = 0;
+let currentIndex = -1;
 
-/* AUTO COVER (NO IMAGE FILE) */
-const defaultCover = `data:image/svg+xml;utf8,
-<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'>
-<defs>
-  <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
-    <stop offset='0%' stop-color='#ff512f'/>
-    <stop offset='100%' stop-color='#f09819'/>
-  </linearGradient>
-</defs>
-<rect width='200' height='200' fill='url(%23g)'/>
-<text x='50%' y='55%' font-size='22' fill='white' text-anchor='middle'
-dominant-baseline='middle'>🎵 MUSIC</text>
-</svg>`;
+/* ================= AUTO COVER (NO IMAGE) ================= */
+const defaultCover =
+  "data:image/svg+xml;utf8," +
+  "<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'>" +
+  "<defs>" +
+  "<linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>" +
+  "<stop offset='0%' stop-color='%23ff512f'/>" +
+  "<stop offset='100%' stop-color='%23f09819'/>" +
+  "</linearGradient>" +
+  "</defs>" +
+  "<rect width='200' height='200' fill='url(%23g)'/>" +
+  "<text x='50%' y='55%' font-size='22' fill='white' text-anchor='middle'>MUSIC</text>" +
+  "</svg>";
 
-/* RENDER */
+/* ================= RENDER LIST ================= */
 function render() {
   list.innerHTML = "";
+
   songs.forEach((song, i) => {
     const div = document.createElement("div");
     div.className = "track";
@@ -45,20 +48,23 @@ function render() {
   });
 }
 
-render();
-
-/* PLAY */
+/* ================= PLAY MUSIC ================= */
 function playMusic(i) {
-  currentIndex = i;
-  audio.src = songs[i].file;
-  audio.play().catch(() => {});
+  if (currentIndex !== i) {
+    audio.src = songs[i].file;
+    currentIndex = i;
+  }
+
+  audio.play();
   nowPlaying.innerText = "Now Playing: " + songs[i].title;
   coverPlayer.src = defaultCover;
   playBtn.innerText = "⏸";
 }
 
-/* PLAY / PAUSE */
+/* ================= PLAY / PAUSE ================= */
 function togglePlay() {
+  if (!audio.src) return;
+
   if (audio.paused) {
     audio.play();
     playBtn.innerText = "⏸";
@@ -68,20 +74,18 @@ function togglePlay() {
   }
 }
 
-/* NEXT / PREV */
+/* ================= NEXT / PREV ================= */
 function next() {
-  currentIndex = (currentIndex + 1) % songs.length;
-  playMusic(currentIndex);
+  playMusic((currentIndex + 1) % songs.length);
 }
 
 function prev() {
-  currentIndex = (currentIndex - 1 + songs.length) % songs.length;
-  playMusic(currentIndex);
+  playMusic((currentIndex - 1 + songs.length) % songs.length);
 }
 
+/* ================= EVENTS ================= */
 audio.addEventListener("ended", next);
 
-/* PROGRESS */
 audio.addEventListener("timeupdate", () => {
   if (audio.duration) {
     progress.value = (audio.currentTime / audio.duration) * 100;
@@ -94,8 +98,12 @@ progress.addEventListener("input", () => {
   }
 });
 
-/* VOLUME */
+/* ================= VOLUME ================= */
 volume.value = 0.7;
+audio.volume = 0.7;
 volume.addEventListener("input", () => {
   audio.volume = volume.value;
 });
+
+/* ================= INIT ================= */
+render();
