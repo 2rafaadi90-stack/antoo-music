@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Antooo Music</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antooo Music</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -21,13 +21,24 @@
   </div>
 </header>
 
+<!-- LIST LAGU -->
 <div id="musicList" class="music-list"></div>
 
 <!-- PLAYER -->
 <div class="player">
-  <img id="coverPlayer" src="">
+  <img
+    id="coverPlayer"
+    src="data:image/svg+xml;utf8,
+    <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'>
+      <rect width='200' height='200' fill='%23111'/>
+      <text x='50%' y='55%' font-size='22' fill='white'
+      text-anchor='middle'>MUSIC</text>
+    </svg>"
+    alt="cover"
+  >
+
   <div class="info">
-    <div id="nowPlaying">-</div>
+    <div id="nowPlaying">Pilih lagu</div>
 
     <div class="controls">
       <button onclick="prev()">⏮</button>
@@ -35,13 +46,25 @@
       <button onclick="next()">⏭</button>
     </div>
 
-    <input type="range" id="progress" value="0">
+    <input
+      type="range"
+      id="progress"
+      min="0"
+      max="100"
+      value="0"
+    >
   </div>
 
-  <input type="range" id="volume" min="0" max="1" step="0.1">
+  <input
+    type="range"
+    id="volume"
+    min="0"
+    max="1"
+    step="0.1"
+  >
 </div>
 
-<audio id="audioPlayer"></audio>
+<audio id="audioPlayer" preload="metadata"></audio>
 
 <script src="script.js"></script>
 </body>
