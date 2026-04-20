@@ -18,11 +18,13 @@ let currentIndex = 0;
 
 /* COVER RANDOM */
 function getCover(title) {
-  return `https://source.unsplash.com/200x200/?anime,${title}`;
+  return `https://source.unsplash.com/200x200/?anime,music`;
 }
 
 /* RENDER */
 function render() {
+  list.innerHTML = ""; // reset biar gak dobel
+
   songs.forEach((song, i) => {
     const div = document.createElement("div");
     div.className = "track";
@@ -42,10 +44,13 @@ render();
 /* PLAY */
 function playMusic(i) {
   currentIndex = i;
-  audio.src = songs[i].file;
-  audio.play();
 
-  nowPlaying.innerText = songs[i].title;
+  audio.src = songs[i].file;
+  audio.load();
+
+  audio.play().catch(err => console.log("Play error:", err));
+
+  nowPlaying.innerText = "Now Playing: " + songs[i].title;
   coverPlayer.src = getCover(songs[i].title);
   playBtn.innerText = "⏸";
 }
@@ -53,7 +58,7 @@ function playMusic(i) {
 /* PLAY/PAUSE */
 function togglePlay() {
   if (audio.paused) {
-    audio.play();
+    audio.play().catch(err => console.log(err));
     playBtn.innerText = "⏸";
   } else {
     audio.pause();
@@ -74,18 +79,24 @@ function prev() {
 }
 
 /* AUTO NEXT */
-audio.onended = next;
+audio.addEventListener("ended", next);
 
-/* PROGRESS */
-audio.ontimeupdate = () => {
-  progress.value = (audio.currentTime / audio.duration) * 100;
-};
+/* PROGRESS UPDATE */
+audio.addEventListener("timeupdate", () => {
+  if (audio.duration) {
+    progress.value = (audio.currentTime / audio.duration) * 100;
+  }
+});
 
-progress.oninput = () => {
-  audio.currentTime = (progress.value / 100) * audio.duration;
-};
+/* SEEK */
+progress.addEventListener("input", () => {
+  if (audio.duration) {
+    audio.currentTime = (progress.value / 100) * audio.duration;
+  }
+});
 
 /* VOLUME */
-volume.oninput = () => {
+volume.value = 0.7; // default
+volume.addEventListener("input", () => {
   audio.volume = volume.value;
-};
+});
